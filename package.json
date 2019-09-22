@@ -1,0 +1,19 @@
+{
+  "name": "strangerlights",
+  "version": "1.0.0",
+  "description": "A Stranger Things light string controller",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markhoney/strangerlights.git"
+  },
+  "author": "Mark Honeychurch",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/markhoney/strangerlights/issues"
+  },
+  "homepage": "https://github.com/markhoney/strangerlights#readme"
+}
