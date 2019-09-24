@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/markhoney/strangerlights/issues"
   },
-  "homepage": "https://github.com/markhoney/strangerlights#readme"
+  "homepage": "https://github.com/markhoney/strangerlights#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "skeleton-css": "^2.0.4",
+    "vue": "^2.6.10"
+  }
 }

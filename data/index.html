@@ -1,42 +1,61 @@
-<html>
+<!doctype html>
+<html lang="en">
 	<head>
-		<title>Rebecca's Lights</title>
+		<title>Stranger Strings</title>
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		<script src="../node_modules/vue/dist/vue.js"></script>
+		<!--<script src="vue.min.js"></script>-->
+		<script src="strangerstrings.js"></script>
+		<link rel="stylesheet" href="normalize.min.css" />
+		<link rel="stylesheet" href="style.css" />
+		<link rel="icon" type="image/png" href="favicon.ico">
 	</head>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
-	<link rel="stylesheet" href="style.css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<body>
-		<div class="stranger">
-			<div class="top">
-				<div class="bound full"></div>
-				<p>
-					<span class="drop">R</span>ebecca'<span class="drop">s</span>
-				</p>
-				<div class="bound mini left"></div>
-				<div class="bound mini right"></div>
-			</div>
-			<div class="bottom">
-				<p>Lights</p>
-			</div>
+		<div id="app">
+			<header class="stranger">
+				<div class="top">
+					<div class="bound full"></div>
+					<p>
+						<span class="drop">{{name[0].slice(0, 1)}}</span>{{name[0].slice(1, -1)}}<span class="drop">{{name[0].slice(-1)}}</span>
+					</p>
+					<div class="bound mini left"></div>
+					<div class="bound mini right"></div>
+				</div>
+				<div class="bottom">
+					<p>{{name[1]}}</p>
+				</div>
+			</header>
+			<section>
+				<form @submit="formSubmit">
+					<label for="mode">Mode</label>
+					<select v-model="mode" @change="modeChange">
+						<option value="off">Off</option>
+						<option value="on">On</option>
+						<option value="pattern">Pattern</option>
+						<option value="message">Message</option>
+					</select>
+					<label for="brightness">Brightness: {{brightness}}</label>
+					<input type="range" min="0" max="255" v-model="brightness" class="slider" @mouseup="brightnessChange">
+					<fieldset v-if="mode == 'message'">
+							<label for="message">Message</label>
+							<textarea v-model="message" rows="5" cols="50"></textarea>
+							<label for="original">Original Colours</label><input type="checkbox" id="original" v-model="original">
+						<label for="colour">Colour</label><input id="colour" type="color" v-model="colour">
+						<br />
+						<button @click="messageSend">Send</button>
+					</fieldset>
+					<fieldset>
+						<select v-model="pattern" @change="patternChange">
+							<option value="rainbow">Rainbow</option>
+							<option value="pulse">Pulse</option>
+							<option value="flickering">Flickering</option>
+							<option value="chase">Chase</option>
+						</select>
+					</fieldset>
+				</form>
+			</section>
 		</div>
-		<form action='/' method='POST'>
-			<br><label for='donotshow'>Display lights normally</label> <input type='checkbox' name='donotshow' id='donotshow' style='float: right;'><br>
-			<p>Letter Duration (ms): 1000</p>
-			<input type='range' min='500' max='" + String(LETTER_DURATION*2) + "' value='" + String(letterDuration) + "' name='letterduration' class='slider'>
-			
-			<p>" + String(TEXT_PAUSE_DURATION)  + " (ms) : " + String(pauseDuration) + "</p>
-			<input type='range' min='0' max='" + String(MAX_PAUSE_DURATION) + "' value='" + String(pauseDuration) + "' name='pauseduration' class='slider'><br><br>
-			
-			<hr>
-			
-			<p>" + String(TYPE_MESSAGE) + "</p>
-			<textarea name='message' rows=\"5\" cols=\"50\">" + String(message)  + "</textarea>
-		
-			<p>" + String(BRIGHTNESS_TEXT) + " : " + String(brightness) + "</p>
-			<input type='range' min='0' max='255' value='" + String(brightness) + "' name='brightness' class='slider'><br><br>
-			
-			<label for='originalcolor'>" + String(ORIGINAL_COLORS) + "</label> <input type='checkbox' name='originalcolor' id='originalcolor' " + String((originalColor) ? "checked" : "") + " style='float: right;'><br><br>
-			<label for='color'>" + String(LED_COLOR) + "</label> <input id='color' name='color' type='color' value='" + color + "' style='float: right;'>
-			<br><br><button type='submit'>" + String(SUBMIT) + "</button>
 	</body>
 </html>
