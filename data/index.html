@@ -5,8 +5,8 @@
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<script src="../node_modules/vue/dist/vue.js"></script>
-		<!--<script src="vue.min.js"></script>-->
+		<!--<script src="../node_modules/vue/dist/vue.js"></script>-->
+		<script src="vue.min.js"></script>
 		<script src="strangerstrings.js"></script>
 		<link rel="stylesheet" href="normalize.min.css" />
 		<link rel="stylesheet" href="style.css" />
@@ -28,26 +28,28 @@
 				</div>
 			</header>
 			<section>
-				<form @submit="formSubmit">
+				<form>
 					<label for="mode">Mode</label>
-					<select v-model="mode" @change="modeChange">
+					<select v-model="mode" class="u-full-width">
 						<option value="off">Off</option>
 						<option value="on">On</option>
 						<option value="pattern">Pattern</option>
 						<option value="message">Message</option>
 					</select>
-					<label for="brightness">Brightness: {{brightness}}</label>
-					<input type="range" min="0" max="255" v-model="brightness" class="slider" @mouseup="brightnessChange">
-					<fieldset v-if="mode == 'message'">
+					<fieldset v-if="mode != 'off'">
+						<label for="brightness">Brightness: {{brightness}}</label>
+						<input type="range" min="0" max="255" v-model="brightness" class="slider" @mouseup="brightnessChange" class="u-full-width">
+					</fieldset>
+					<fieldset v-if="mode == 'message'" class="u-full-width">
 							<label for="message">Message</label>
-							<textarea v-model="message" rows="5" cols="50"></textarea>
-							<label for="original">Original Colours</label><input type="checkbox" id="original" v-model="original">
+							<textarea v-model="message" class="u-full-width"></textarea>
+							<!--<label for="original">Original Colours</label><input type="checkbox" id="original" v-model="original">
 						<label for="colour">Colour</label><input id="colour" type="color" v-model="colour">
-						<br />
+						<br />-->
 						<button @click="messageSend">Send</button>
 					</fieldset>
-					<fieldset>
-						<select v-model="pattern" @change="patternChange">
+					<fieldset v-if="mode == 'pattern'">
+						<select v-model="pattern" class="u-full-width">
 							<option value="rainbow">Rainbow</option>
 							<option value="pulse">Pulse</option>
 							<option value="flickering">Flickering</option>

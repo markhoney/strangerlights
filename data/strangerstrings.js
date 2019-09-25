@@ -1,16 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
-	function ajaxPost(form) { // , callback
-		const url = form.action;
+	function ajaxGet(url) {
 		const xhr = new XMLHttpRequest();
-		var params = [].filter.call(form.elements, el => typeof(el.checked) === 'undefined' || el.checked)
-			.filter(el => !!el.name)
-			.filter(el => el.disabled)
-			.map(el => encodeURIComponent(el.name) + '=' + encodeURIComponent(el.value))
-			.join('&');
-		xhr.open("POST", url);
-		xhr.setRequestHeader("Content-type", "application/x-form-urlencoded");
-		//xhr.onload = callback.bind(xhr); 
-		xhr.send(params);
+		xhr.open("GET", url);
+		xhr.send();
 	}
 	const app = new Vue({
 		el: '#app',
@@ -32,17 +24,19 @@ document.addEventListener('DOMContentLoaded', function() {
 			pattern: "rainbow",
 		},
 		methods: {
-			messageSend(event) {
-				ajaxPost(event.target);
+			messageSend() {
+				ajaxGet('message/' + encodeURIComponent(this.message));
 			},
-			modeChange(event) {
-				ajaxPost(event.target);
+			brightnessChange() {
+				ajaxGet('brightness/' + this.brightness);
 			},
-			patternChange(event) {
-				ajaxPost(event.target);
+		},
+		watch: {
+			mode: function(value) {
+				ajaxGet('mode/' + value);
 			},
-			brightnessChange(event) {
-				ajaxPost(event.target);
+			pattern: function(value) {
+				ajaxGet('pattern/' + value);
 			},
 		},
 	});

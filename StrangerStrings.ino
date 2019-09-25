@@ -7,11 +7,12 @@
 
 const char* ssid = "honeychurch";
 const char* password = "w1r3l3ss";
+const char* hostname = "stranger";
 
-#define DEFAULT_STRING "Run"
+#define DEFAULT_STRING "Happy Birthday Rebecca"
 #define DEFAULT_COLOR "#FF0000"
 #define LETTER_DURATION 1000
-#define PAUSE_DURATION 15000
+#define PAUSE_DURATION 5000
 #define MAX_PAUSE_DURATION 60000
 #define ORIGINAL_COLOR true
 #define DO_NOT_SHOW false
@@ -73,7 +74,7 @@ void handleCommand() {
 	if (doNotShow) {
 		doNotShowLeds();
 	}
-	server.send(200, "text/html", getPage() );
+	server.send(200, "text/html", "");
 }
 
 void doNotShowLeds() {
@@ -125,12 +126,13 @@ bool handleFileRead(String path) {
 
 void setup(void) {
 	WiFi.mode(WIFI_STA);
+  //WiFi.setHostname(hostname);
 	WiFi.begin(ssid, password);
 	//IPAddress myIP = WiFi.softAPIP();
 
 	SPIFFS.begin();
 
-	server.on("/command", handleCommand);
+	server.on("/mode", handleCommand);
 	server.onNotFound([]() {
 		if (!handleFileRead(server.uri())) server.send(404, "text/plain", "404: Not Found");
 	});
