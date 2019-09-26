@@ -25,18 +25,18 @@ document.addEventListener('DOMContentLoaded', function() {
 		},
 		methods: {
 			messageSend() {
-				ajaxGet('message/' + encodeURIComponent(this.message));
+				ajaxGet('api?message=' + encodeURIComponent(this.message));
 			},
 			brightnessChange() {
-				ajaxGet('brightness/' + this.brightness);
+				ajaxGet('api?brightness=' + this.brightness);
 			},
 		},
 		watch: {
 			mode: function(value) {
-				ajaxGet('mode/' + value);
+				ajaxGet('api?mode=' + value);
 			},
 			pattern: function(value) {
-				ajaxGet('pattern/' + value);
+				ajaxGet('api?pattern=' + value);
 			},
 		},
 	});

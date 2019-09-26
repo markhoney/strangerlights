@@ -48,8 +48,8 @@ input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
     color: #2e3436;
-    background-color: #fcaf3e;
-    border-color: #fcaf3e;
+    background-color: #d3d7cf;
+    border-color: #d3d7cf;
 }
 
 .button.button-primary:hover,
@@ -63,8 +63,8 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
     color: #2e3436;
-    background-color: #f57900;
-    border-color: #f57900;
+    background-color: #eeeeec;
+    border-color: #eeeeec;
 }
 
 /* Forms */
@@ -91,7 +91,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-    border: 1px solid #fcaf3e;
+    border: 1px solid #d3d7cf;
 }
 
 /* Code */

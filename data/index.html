@@ -31,10 +31,10 @@
 				<form>
 					<label for="mode">Mode</label>
 					<select v-model="mode" class="u-full-width">
-						<option value="off">Off</option>
-						<option value="on">On</option>
-						<option value="pattern">Pattern</option>
-						<option value="message">Message</option>
+						<option value="0">Off</option>
+						<option value="1">On</option>
+						<option value="2">Pattern</option>
+						<option value="3">Message</option>
 					</select>
 					<fieldset v-if="mode != 'off'">
 						<label for="brightness">Brightness: {{brightness}}</label>
@@ -50,10 +50,10 @@
 					</fieldset>
 					<fieldset v-if="mode == 'pattern'">
 						<select v-model="pattern" class="u-full-width">
-							<option value="rainbow">Rainbow</option>
-							<option value="pulse">Pulse</option>
-							<option value="flickering">Flickering</option>
-							<option value="chase">Chase</option>
+							<option value="0">Rainbow</option>
+							<option value="1">Pulse</option>
+							<option value="2">Flickering</option>
+							<option value="3">Chase</option>
 						</select>
 					</fieldset>
 				</form>
